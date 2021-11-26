@@ -43,7 +43,7 @@ public class PricePlanService {
         return averagedCost.multiply(pricePlan.getUnitRate());
     }
 
-    private BigDecimal calculateAverageReading(List<ElectricityReading> electricityReadings) {
+    protected BigDecimal calculateAverageReading(List<ElectricityReading> electricityReadings) {
         BigDecimal summedReadings = electricityReadings.stream()
                 .map(ElectricityReading::getReading)
                 .reduce(BigDecimal.ZERO, (reading, accumulator) -> reading.add(accumulator));
