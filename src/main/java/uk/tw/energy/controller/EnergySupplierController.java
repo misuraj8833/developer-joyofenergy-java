@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequestMapping("/suppliers")
 public class EnergySupplierController
 {
-    private EnergySupplierService energySupplierService;
+    private final EnergySupplierService energySupplierService;
     private final Map<Integer, String> supplierIdToSupplier;
     public EnergySupplierController(EnergySupplierService energySupplierService,Map<Integer, String> supplierIdToSupplier)
     {

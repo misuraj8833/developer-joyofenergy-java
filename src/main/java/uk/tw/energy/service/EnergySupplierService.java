@@ -21,10 +21,8 @@ public class EnergySupplierService
         this.pricePlanService = pricePlanService;
     }
 
-    //create a method which will accept the supplier Id and will return the total power distributed
     public Optional<BigDecimal> powerDistributed(Integer supplierId) throws NullPointerException
     {
-        //need to get the meterId of a particular supplier.
         String supplierName = supplierIdToSupplier.get(supplierId);
         if(!(supplierName ==null)){
         List<String> smartMeterIdsFromSupplier = supplierToSmartMeterId.get(supplierName);
@@ -37,7 +35,6 @@ public class EnergySupplierService
 
     private Optional<BigDecimal> powerDistributedBySmartMeters(Optional<List<String>> smartMeterIds)
     {
-        //pass the meterId to the MeterReadingService and get the ElectrictyReadings
         List<BigDecimal> listTotalElectricityDistributed = new ArrayList<>();
         if(smartMeterIds.isPresent()) {
             smartMeterIds.get()
