@@ -30,9 +30,10 @@ public class EnergySupplierController
         Map<String,BigDecimal> mapOfSupplierToPowerDistributed = new HashMap<>();
         try {
             Optional<BigDecimal> totalPowerDistributed = energySupplierService.powerDistributed(supplierId);
-            mapOfSupplierToPowerDistributed.put(supplierIdToSupplier.get(supplierId),totalPowerDistributed.get());
-            if (totalPowerDistributed.isPresent())
+            if(totalPowerDistributed.isPresent()) {
+                mapOfSupplierToPowerDistributed.put(supplierIdToSupplier.get(supplierId), totalPowerDistributed.get());
                 return ResponseEntity.ok(mapOfSupplierToPowerDistributed);
+            }
             else
                 return ResponseEntity.notFound().build();
         }
