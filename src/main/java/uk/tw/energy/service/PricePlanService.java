@@ -32,7 +32,7 @@ public class PricePlanService {
         }
 
         return Optional.of(pricePlans.stream().collect(
-                Collectors.toMap(PricePlan::getPlanName, pricePlan -> calculateCost(electricityReadings.get(), pricePlan))));
+                Collectors.toMap(PricePlan::getPlanName, t -> calculateCost(electricityReadings.get(), t))));
     }
 
     private BigDecimal calculateCost(List<ElectricityReading> electricityReadings, PricePlan pricePlan) {

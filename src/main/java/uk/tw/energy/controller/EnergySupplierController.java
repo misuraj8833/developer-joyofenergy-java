@@ -31,7 +31,10 @@ public class EnergySupplierController
         try {
             Optional<BigDecimal> totalPowerDistributed = energySupplierService.powerDistributed(supplierId);
             mapOfSupplierToPowerDistributed.put(supplierIdToSupplier.get(supplierId),totalPowerDistributed.get());
-            return ResponseEntity.ok(mapOfSupplierToPowerDistributed);
+            if (totalPowerDistributed.isPresent())
+                return ResponseEntity.ok(mapOfSupplierToPowerDistributed);
+            else
+                return ResponseEntity.notFound().build();
         }
         catch (NullPointerException nullPointerException)
         {
