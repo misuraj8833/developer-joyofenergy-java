@@ -25,7 +25,7 @@ public class EnergySupplierController
     }
 
     @GetMapping("/{supplierId}")
-    public ResponseEntity getElectricityDistributedBySupplierId(@PathVariable int supplierId)
+    public ResponseEntity getElectricityDistributedBySupplierId(@PathVariable Integer supplierId)
     {
         Map<String,BigDecimal> mapOfSupplierToPowerDistributed = new HashMap<>();
         try {
@@ -34,12 +34,13 @@ public class EnergySupplierController
                 mapOfSupplierToPowerDistributed.put(supplierIdToSupplier.get(supplierId), totalPowerDistributed.get());
                 return ResponseEntity.ok(mapOfSupplierToPowerDistributed);
             }
-            else
+            else if(!totalPowerDistributed.isPresent())
                 return ResponseEntity.notFound().build();
         }
         catch (NullPointerException nullPointerException)
         {
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
 }

@@ -24,10 +24,11 @@ public class EnergySupplierService
     public Optional<BigDecimal> powerDistributed(Integer supplierId) throws NullPointerException
     {
         String supplierName = supplierIdToSupplier.get(supplierId);
-        if(!(supplierName ==null)){
-        List<String> smartMeterIdsFromSupplier = supplierToSmartMeterId.get(supplierName);
-        Optional<List<String>> smartMeterIds = Optional.of(smartMeterIdsFromSupplier);
-        return powerDistributedBySmartMeters(smartMeterIds);
+        if(supplierName!=null)
+        {
+            List<String> smartMeterIdsFromSupplier = supplierToSmartMeterId.get(supplierName);
+            Optional<List<String>> smartMeterIds = Optional.of(smartMeterIdsFromSupplier);
+            return powerDistributedBySmartMeters(smartMeterIds);
         }
         else
             return Optional.empty();
