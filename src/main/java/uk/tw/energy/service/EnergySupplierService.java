@@ -37,7 +37,8 @@ public class EnergySupplierService
     private Optional<BigDecimal> powerDistributedBySmartMeters(Optional<List<String>> smartMeterIds)
     {
         List<BigDecimal> listTotalElectricityDistributed = new ArrayList<>();
-        if(smartMeterIds.isPresent()) {
+        if(smartMeterIds.isPresent())
+        {
             smartMeterIds.get()
                     .forEach(smartMeterId ->
                     {
@@ -46,8 +47,7 @@ public class EnergySupplierService
             Optional<BigDecimal> totalElectricityUsedBySuppliersSmartMeters;
             totalElectricityUsedBySuppliersSmartMeters =
                     Optional.ofNullable(listTotalElectricityDistributed.stream()
-                            .reduce(BigDecimal.ZERO, BigDecimal::add))
-            ;
+                            .reduce(BigDecimal.ZERO, BigDecimal::add));
             return totalElectricityUsedBySuppliersSmartMeters;
         }
         else

@@ -19,7 +19,9 @@ import java.util.Map;
 import static java.util.Collections.emptyList;
 
 @Configuration
-public class SeedingApplicationDataConfiguration {
+
+public class SeedingApplicationDataConfiguration
+{
 
     private static final String MOST_EVIL_PRICE_PLAN_ID = "price-plan-0";
     private static final String RENEWABLES_PRICE_PLAN_ID = "price-plan-1";
@@ -48,7 +50,8 @@ public class SeedingApplicationDataConfiguration {
     }
 
     @Bean
-    public Map<String, String> smartMeterToPricePlanAccounts() {
+    public Map<String, String> smartMeterToPricePlanAccounts()
+    {
         final Map<String, String> smartMeterToPricePlanAccounts = new HashMap<>();
         smartMeterToPricePlanAccounts.put("smart-meter-0", MOST_EVIL_PRICE_PLAN_ID);
         smartMeterToPricePlanAccounts.put("smart-meter-1", RENEWABLES_PRICE_PLAN_ID);
@@ -59,7 +62,8 @@ public class SeedingApplicationDataConfiguration {
     }
 
     @Bean
-    public Map<Integer, String> supplierIdToSupplier() {
+    public Map<Integer, String> supplierIdToSupplier()
+    {
         final Map<Integer, String> supplierIdToSupplier = new HashMap<>();
         supplierIdToSupplier.put(0, MOST_EVIL_SUPPLIER);
         supplierIdToSupplier.put(1, RENEWABLES_SUPPLIER);
@@ -68,7 +72,8 @@ public class SeedingApplicationDataConfiguration {
     }
 
     @Bean
-    public Map<String, List<String>> supplierToSmartMeterId() {
+    public Map<String, List<String>> supplierToSmartMeterId()
+    {
         final Map<String, List<String>> supplierToSmartMeterId = new HashMap<>();
 
         List<String> listOfSmartMetersMostEvil = new ArrayList<>();
@@ -88,10 +93,22 @@ public class SeedingApplicationDataConfiguration {
         return supplierToSmartMeterId;
     }
 
+    @Bean
+    public Map<String,String> userToSmartMeterId()
+    {
+        Map <String, String> userToSmartMeterId = new HashMap<>();
+        userToSmartMeterId.put("Sarah","smart-meter-0");
+        userToSmartMeterId.put("Peter","smart-meter-1");
+        userToSmartMeterId.put("Charlie","smart-meter-2");
+        userToSmartMeterId.put("Andrea","smart-meter-3");
+        userToSmartMeterId.put("Alex","smart-meter-4");
+        return userToSmartMeterId;
+    }
 
     @Bean
     @Primary
-    public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
+    public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder)
+    {
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         return objectMapper;

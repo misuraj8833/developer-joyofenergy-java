@@ -80,16 +80,14 @@ class EnergySupplierControllerTest {
     {
 
         BigDecimal stubPowerDistributed = BigDecimal.valueOf(524.90);
-
         ResponseEntity actualResponseEntityFromController = energySupplierController.getElectricityDistributedBySupplierId(0);
         Map<String,BigDecimal> mapOfSupplierToPowerDistributed = (Map<String, BigDecimal>) actualResponseEntityFromController.getBody();
-
         Integer comparisonResultBetweenStubValueAndActualValue = stubPowerDistributed.compareTo(mapOfSupplierToPowerDistributed.get(MOST_EVIL_SUPPLIER));
         assertThat(comparisonResultBetweenStubValueAndActualValue).isEqualTo(0);
     }
 
     @Test
-    void givenNotValidSupplierIdWillReturnNullResponseEntity()
+    void givenInValidSupplierIdWillReturnNullResponseEntity()
     {
 
         ResponseEntity stubResponseEntity = ResponseEntity.notFound().build();
