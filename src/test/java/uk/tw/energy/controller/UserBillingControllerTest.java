@@ -17,13 +17,13 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Collections.emptyList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class UserBillingControllerTest
 {
     private static final String MOST_EVIL_SUPPLIER = "Dr Evil's Dark Energy";
     private static final String MOST_EVIL_PRICE_PLAN_ID = "price-plan-0";
-    private static final String USER_NAME = "Sarah";
     private static final String SMART_METER_ID = "smart-meter-0";
 
 
@@ -62,6 +62,7 @@ class UserBillingControllerTest
         userToSmartMeterId = new HashMap<>();
         userToSmartMeterId.put("Sarah","smart-meter-0");
 
+        smartMeterToPricePlanAccounts = new HashMap<>();
         smartMeterToPricePlanAccounts.put(SMART_METER_ID,MOST_EVIL_PRICE_PLAN_ID);
 
         userBillingService = new UserBillingService(pricePlanService,userToSmartMeterId,smartMeterToPricePlanAccounts);
@@ -71,10 +72,16 @@ class UserBillingControllerTest
     @Test
     void billForUser()
     {
-        //given
-        ResponseEntity actualStubResponseEntity = userBillingController.billForUser(USER_NAME);
-        //when
-        assertEquals(actualStubResponseEntity,ResponseEntity.ok());
-        //then
+        String userName = "Sarah";
+        ResponseEntity actualResponseEntity = userBillingController.billForUser(userName);
+        assertNotNull(actualResponseEntity);
+
+    }
+
+    @Test
+    void noBillForInvalidUserName()
+    {
+        ResponseEntity actualResponseEntity = userBillingController.billForUser("suraj");
+        assertEquals(actualResponseEntity,ResponseEntity.notFound().build());
     }
 }

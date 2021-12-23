@@ -24,7 +24,7 @@ public class UserBillingService
     public Optional<BigDecimal> billForTheGivenUser(String userName)
     {
         Optional<Map<String,BigDecimal>> mapOfPlanNameToCost = Optional.of(new HashMap<>());
-        Optional<BigDecimal> billAmount = Optional.of(BigDecimal.ZERO);
+        Optional<BigDecimal> billAmount = Optional.empty();
         if(userToSmartMeterId.containsKey(userName))
         {
             String smartMeterId = userToSmartMeterId.get(userName);

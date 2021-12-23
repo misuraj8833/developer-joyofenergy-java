@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uk.tw.energy.service.UserBillingService;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,12 +27,14 @@ public class UserBillingController
     @GetMapping("/{userName}")
     public ResponseEntity billForUser(@PathVariable String userName)
     {
+        Map<String ,BigDecimal> mapOfResult = new HashMap<>();
         if(userToSmartMeterId.containsKey(userName))
         {
             Optional<BigDecimal> bill = userBillingService.billForTheGivenUser(userName);
             if (bill.isPresent())
             {
-                return ResponseEntity.ok(bill.get());
+                mapOfResult.put(userName,bill.get());
+                return ResponseEntity.ok(mapOfResult);
             }
             else
             {

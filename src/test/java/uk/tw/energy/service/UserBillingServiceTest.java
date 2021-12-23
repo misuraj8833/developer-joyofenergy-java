@@ -58,7 +58,7 @@ class UserBillingServiceTest
         pricePlanService = new PricePlanService(pricePlans,meterReadingService);
 
         userToSmartMeterId = new HashMap<>();
-        userToSmartMeterId.put(USER_NAME,SMART_METER_ID);
+        userToSmartMeterId.put("Sarah",SMART_METER_ID);
 
         smartMeterToPricePlanAccounts = new HashMap<>();
         smartMeterToPricePlanAccounts.put(SMART_METER_ID,MOST_EVIL_PRICE_PLAN_ID);
@@ -78,7 +78,7 @@ class UserBillingServiceTest
     void getInvalidBillForTheInvalidUsername()
     {
         Optional<BigDecimal> actualValue = userBillingService.billForTheGivenUser(USER_NAME);
-        assertEquals(ResponseEntity.notFound().build(),ResponseEntity.notFound().build());
+        assertEquals(Optional.empty(),actualValue);
 
     }
 }
