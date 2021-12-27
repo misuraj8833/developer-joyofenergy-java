@@ -18,7 +18,8 @@ public class EnergySupplierController
 {
     private final EnergySupplierService energySupplierService;
     private final Map<Integer, String> supplierIdToSupplier;
-    public EnergySupplierController(EnergySupplierService energySupplierService,Map<Integer, String> supplierIdToSupplier)
+
+    public EnergySupplierController(EnergySupplierService energySupplierService, Map<Integer, String> supplierIdToSupplier)
     {
         this.energySupplierService = energySupplierService;
         this.supplierIdToSupplier = supplierIdToSupplier;
@@ -27,15 +28,16 @@ public class EnergySupplierController
     @GetMapping("/{supplierId}")
     public ResponseEntity getElectricityDistributedBySupplierId(@PathVariable Integer supplierId)
     {
-        Map<String,BigDecimal> mapOfSupplierToPowerDistributed = new HashMap<>();
-        try {
+
+        Map<String, BigDecimal> mapOfSupplierToPowerDistributed = new HashMap<>();
+        try
+        {
             Optional<BigDecimal> totalPowerDistributed = energySupplierService.powerDistributed(supplierId);
-            if(totalPowerDistributed.isPresent()) {
+            if (totalPowerDistributed.isPresent())
+            {
                 mapOfSupplierToPowerDistributed.put(supplierIdToSupplier.get(supplierId), totalPowerDistributed.get());
                 return ResponseEntity.ok(mapOfSupplierToPowerDistributed);
             }
-            else if(!totalPowerDistributed.isPresent())
-                return ResponseEntity.notFound().build();
         }
         catch (NullPointerException nullPointerException)
         {
