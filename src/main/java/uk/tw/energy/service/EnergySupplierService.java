@@ -43,6 +43,7 @@ public class EnergySupplierService
 
     private Optional<BigDecimal> powerDistributedBySmartMeters(Optional<List<String>> smartMeterIds)
     {
+
         List<BigDecimal> listTotalElectricityDistributed = new ArrayList<>();
         Optional<BigDecimal> totalElectricityUsedBySuppliersSmartMeters;
 

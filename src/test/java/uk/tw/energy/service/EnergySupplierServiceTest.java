@@ -67,50 +67,6 @@ class EnergySupplierServiceTest {
 
     }
 
- /*  @BeforeEach
-    public void setUpSupplierToSmartMeterId(){
-        listOfSmartMeters = new ArrayList<>();
-        listOfSmartMeters.add("smart-meter-0");
-        listOfSmartMeters.add("smart-meter-2");
-        supplierToSmartMeterId = new HashMap<>();
-        supplierToSmartMeterId.put(MOST_EVIL_SUPPLIER, listOfSmartMeters);
-    }
-
-    @BeforeEach
-    public void setUpElectricityReadingList()
-    {
-        electricityReadingList = new ArrayList<>();
-        Instant instant = Instant.now();
-        BigDecimal electricityReadingDayOne = BigDecimal.valueOf(200.45);
-        electricityReadingList.add(new ElectricityReading(instant,electricityReadingDayOne));
-        BigDecimal electricityReadingDayTwo = BigDecimal.valueOf(324.45);
-        electricityReadingList.add(new ElectricityReading(instant,electricityReadingDayTwo));
-    }
-
-    @BeforeEach
-    public void setUpMeterAssociatedReadings()
-    {
-        meterAssociatedReading = new HashMap<>();
-        listOfSmartMeters.stream()
-                .forEach(
-                        meterReading ->
-                             meterAssociatedReading.put(meterReading,electricityReadingList)
-                );
-    }
-
-    @BeforeEach
-    public void setUpListOfPricePlans() {
-        pricePlans = new ArrayList<>();
-        pricePlans.add(new PricePlan(MOST_EVIL_PRICE_PLAN_ID, MOST_EVIL_SUPPLIER, BigDecimal.TEN, emptyList()));
-    }
-
-    @BeforeEach
-    public void setUpEnergySupplierTest(){
-        meterReadingService = new MeterReadingService(meterAssociatedReading);
-        pricePlanService = new PricePlanService(pricePlans,meterReadingService);
-        energySupplierService = new EnergySupplierService(supplierIdToSupplier,supplierToSmartMeterId,meterReadingService,pricePlanService);
-    }
-*/
     @Test
     void givenValidSupplierIdShouldReturnElectricityDistributed() {
 

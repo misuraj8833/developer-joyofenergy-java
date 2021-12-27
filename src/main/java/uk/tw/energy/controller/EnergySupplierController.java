@@ -38,6 +38,7 @@ public class EnergySupplierController
                 mapOfSupplierToPowerDistributed.put(supplierIdToSupplier.get(supplierId), totalPowerDistributed.get());
                 return ResponseEntity.ok(mapOfSupplierToPowerDistributed);
             }
+
         }
         catch (NullPointerException nullPointerException)
         {
