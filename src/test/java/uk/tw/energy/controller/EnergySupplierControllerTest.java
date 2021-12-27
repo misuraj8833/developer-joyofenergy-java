@@ -60,7 +60,7 @@ class EnergySupplierControllerTest {
         electricityReadingList.add(new ElectricityReading(instant, electricityReadingDayTwo));
 
         meterAssociatedReading = new HashMap<>();
-        listOfSmartMeters.stream()
+        listOfSmartMeters
                 .forEach(
                         meterReading ->
                                 meterAssociatedReading.put(meterReading, electricityReadingList)
